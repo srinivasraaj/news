@@ -1,11 +1,3 @@
-# ✅ Install required packages
-!pip install youtube-transcript-api googletrans==4.0.0-rc1
-!pip install pytube deep-translator
-!pip install playwright
-!playwright install
-
-
-
 import nest_asyncio
 nest_asyncio.apply()
 
