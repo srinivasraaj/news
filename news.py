@@ -54,9 +54,17 @@ async def fetch_time_tagged_telugu(url):
 url = "https://www.eenadu.net/telugu-news"  # Replace with actual article URL
 results = asyncio.get_event_loop().run_until_complete(fetch_time_tagged_telugu(url))
 
-# Display clean output
+# Prepare the output text
+output_lines = []
+
 for entry in results:
     if entry["time"]:
-        print(f"{entry['time']} {entry['text']}")
+        line = f"{entry['time']} {entry['text']}"
     else:
-        print(entry["text"])
+        line = entry["text"]
+    print(line)  # still prints to console
+    output_lines.append(line)
+
+# Write to output.txt (overwrite each time)
+with open("output.txt", "w", encoding="utf-8") as f:
+    f.write("\n".join(output_lines))
