@@ -23,6 +23,7 @@ jobs:
           pip install youtube-transcript-api googletrans==4.0.0-rc1
           pip install pytube deep-translator
           pip install playwright
+          pip install nest_asyncio beautifulsoup4 google-auth google-auth-oauthlib gspread
           playwright install
 
       - name: Run scraper script
