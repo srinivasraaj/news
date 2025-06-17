@@ -1,4 +1,4 @@
-import nest_asyncio
+import nest_asyncio 
 nest_asyncio.apply()
 
 import asyncio
@@ -27,14 +27,10 @@ async def fetch_time_tagged_telugu(url):
             if not raw_text:
                 continue
 
-            # Find all timestamps in this tag
             timestamps = timestamp_regex.findall(raw_text)
-
-            # If timestamps exist in this block
             if timestamps:
                 split_text = timestamp_regex.split(raw_text)
                 split_text = [t.strip() for t in split_text if t.strip()]
-
                 for i, sentence in enumerate(split_text):
                     if i < len(timestamps) and telugu_regex.search(sentence):
                         entries.append({
@@ -48,23 +44,4 @@ async def fetch_time_tagged_telugu(url):
                 })
 
         await browser.close()
-        return entries
-
-# Example usage
-url = "https://www.eenadu.net/telugu-news"  # Replace with actual article URL
-results = asyncio.get_event_loop().run_until_complete(fetch_time_tagged_telugu(url))
-
-# Prepare the output text
-output_lines = []
-
-for entry in results:
-    if entry["time"]:
-        line = f"{entry['time']} {entry['text']}"
-    else:
-        line = entry["text"]
-    print(line)  # still prints to console
-    output_lines.append(line)
-
-# Write to output.txt (overwrite each time)
-with open("output.txt", "w", encoding="utf-8") as f:
-    f.write("\n".join(output_lines))
+        retu
