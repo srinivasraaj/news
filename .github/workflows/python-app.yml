@@ -41,5 +41,5 @@ jobs:
           git config user.email "srinivasraaj@github.com"
           git add output.txt
           git commit -m "Update output.txt" || echo "No changes to commit"
-          git remote set-url origin https://x:${GH_PAT}@github.com/srinivasraaj/news.git
+          git remote set-url origin https://srinivasraaj:${GH_PAT}@github.com/srinivasraaj/news.git
           git push
