@@ -44,4 +44,28 @@ async def fetch_time_tagged_telugu(url):
                 })
 
         await browser.close()
-        retu
+        return entries
+
+# Example usage
+url = "https://www.eenadu.net/telugu-news"
+results = asyncio.get_event_loop().run_until_complete(fetch_time_tagged_telugu(url))
+
+# Split logic on "..!", "..", "!" into new lines
+split_pattern = re.compile(r"(?:\.\.!\s*|\.\.\s*|!\s*)")
+final_lines = []
+
+for entry in results:
+    combined = f"{entry['time']} {entry['text']}".strip() if entry["time"] else entry["text"]
+    parts = [line.strip() for line in split_pattern.split(combined) if line.strip()]
+    final_lines.extend(parts)
+
+# Print and save
+#for line in final_lines:
+#    print(line)
+
+import os
+if os.path.exists("output.txt"):
+    os.remove("output.txt")
+
+with open("output.txt", "w", encoding="utf-8") as f:
+    f.write("\n".join(final_lines))
