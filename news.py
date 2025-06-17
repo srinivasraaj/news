@@ -51,7 +51,7 @@ url = "https://www.eenadu.net/telugu-news"
 results = asyncio.get_event_loop().run_until_complete(fetch_time_tagged_telugu(url))
 
 # Split logic on "..!", "..", "!" into new lines
-split_pattern = re.compile(r"(?:\.\.!\s*|\.\.\s*|!\s*)")
+split_pattern = re.compile(r"(?:\.\.!\s*)")
 final_lines = []
 
 for entry in results:
